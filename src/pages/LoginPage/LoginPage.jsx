@@ -1,9 +1,9 @@
 import React from 'react'
-import WelcomeScreen from '../../components/welcomeScreen/WelcomeScreen'
+import LoginScreen from '../../components/loginScreen/LoginScreen'
 
 function LoginPage() {
   return (
-    <div><WelcomeScreen></WelcomeScreen></div>
+    <div><LoginScreen/></div>
   )
 }
 
