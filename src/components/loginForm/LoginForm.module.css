@@ -127,3 +127,16 @@ input::-ms-clear {
   text-align: left;
   
 }
+.errorMessage{
+  height:20px;
+  
+  
+  
+}
+.errorMessage p{
+  padding: 0;
+  margin: 0;
+ 
+  
+  
+}

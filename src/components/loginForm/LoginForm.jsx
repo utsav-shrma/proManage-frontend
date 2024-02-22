@@ -14,9 +14,12 @@ function LoginForm() {
 
   const handleSubmit=async (event)=>{
       event.preventDefault(); //to prevent reload
-      console.log({...credentials});
       const response=await loginUser({...credentials});
-      if(response){navigate("/home");}
+      if(response){
+        console.log(response);
+        localStorage.setItem("token", response.jwt);
+        localStorage.setItem("userName", response.name);
+        navigate("/");}
       
       setErrorFlag(true);
   }
@@ -59,14 +62,14 @@ function LoginForm() {
             src={eyeLogo}
           ></img>
         </div>
-
+        <div className={styles.errorMessage}>
         {errorFlag ? (
-          <div>
+          
             <p className={styles.error}>Invalid Credentials</p>
-          </div>
+         
         ) : (
           ""
-        )}
+        )} </div>
 
         <button onClick={handleSubmit}id={styles.submit_button}>Login</button>
       </div>

@@ -116,3 +116,8 @@
     margin-top: 10px;
     
   }
+
+  .password_input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}

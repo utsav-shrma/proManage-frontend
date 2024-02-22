@@ -6,7 +6,7 @@ export const registerUser = async ({ name, email, password }) => {
   try {
     
     const reqUrl = `${baseURL}/register`;
-    const reqPayload = { name, email, mobile, password };
+    const reqPayload = { name, email, password };
     const response = await axios.post(reqUrl, reqPayload);
     return response.data;
   } catch (error) {
