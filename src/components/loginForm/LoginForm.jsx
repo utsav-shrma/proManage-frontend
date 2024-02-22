@@ -32,7 +32,7 @@ function LoginForm() {
           </div>
 
           <input
-            className={styles.submit_button}
+            id={styles.submit_button}
             type="submit"
             value="Login"
           ></input>

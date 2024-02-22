@@ -1,8 +1,9 @@
 import React from 'react'
+import RegisterScreen from '../../components/registerScreen/RegisterScreen'
 
 function RegisterPage() {
   return (
-    <div>RegisterPage</div>
+    <div><RegisterScreen/></div>
   )
 }
 
