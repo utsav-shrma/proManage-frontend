@@ -1,0 +1,38 @@
+.container {
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.heading {
+  font-family: Open Sans;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 15px;
+  margin-inline: 30px;
+}
+
+.cards_container {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.cards {
+  width: 30vw;
+  max-width: 475px;
+  top: 105px;
+  left: 268px;
+  border-radius: 12px;
+  background: #f9fcff;
+  margin-top: 40px;
+  margin-inline-start: 30px;
+  
+}
+
+.cards{
+    padding: 25px;
+}

@@ -112,10 +112,7 @@
     width: 33px;
   }
   
-  .submit_button{
-    margin-top: 10px;
-    
-  }
+
 
   .password_input::-ms-reveal,
 input::-ms-clear {
