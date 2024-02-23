@@ -2,15 +2,22 @@ export const tokenStorageKey = "token";
 export const nameStorageKey = "userName";
 
 export const analyticsCard1Titles = [
-  { title: "Backlog Tasks", apiKey: "backlogTasks" },
-  { title: "To-Do Tasks", apiKey: "todoTasks" },
-  { title: "In-Progress Tasks Tasks", apiKey: "inProgressTasks" },
-  { title: "Completed Tasks", apiKey: "completedTasks" },
+  { title: "Backlog Tasks", key: "backlogTasks" },
+  { title: "To-Do Tasks", key: "todoTasks" },
+  { title: "In-Progress Tasks", key: "inProgressTasks" },
+  { title: "Completed Tasks", key: "completedTasks" },
 ];
 
 export const analyticsCard2Titles = [
-  { title: "Low Priority", apiKey: "lowPriority" },
-  { title: "Moderate Priority", apiKey: "moderatePriority" },
-  { title: "High Priority", apiKey: "highPriority" },
-  { title: "Due Date Tasks", apiKey: "dueTasks" },
+  { title: "Low Priority", key: "lowPriority" },
+  { title: "Moderate Priority", key: "moderatePriority" },
+  { title: "High Priority", key: "highPriority" },
+  { title: "Due Date Tasks", key: "dueTasks" },
 ];
+
+export const taskStatus = [
+    { title: "Backlog", status: "backlog" },
+    { title: "To Do", status: "todo" },
+    { title: "In progress", status: "inProgress" },
+    { title: "Done", status: "completed" },
+  ];

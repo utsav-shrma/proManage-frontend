@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border-radius: 10px;
+  background: #eef2f5;
+  flex:2;
+  
+  
+  
+}
+.task_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title h1 {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 20px;
+}
+.title img {
+  width: 18px;
+  height: 18px;
+  margin: 20px;
+}
