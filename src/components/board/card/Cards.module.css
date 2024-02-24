@@ -4,21 +4,33 @@
   margin: 10px;
   border-radius: 10px;
   background: #eef2f5;
-  flex:2;
+  height: 80vh;
+ 
+
   
   
   
-}
-.task_container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
 }
 .title {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.task_container{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: auto;
+    
+    
+    
+    
+    
+}
+.overflow_container{
+  overflow: auto;
 }
 
 .title h1 {

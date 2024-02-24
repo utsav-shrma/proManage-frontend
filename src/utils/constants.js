@@ -21,3 +21,4 @@ export const taskStatus = [
     { title: "In progress", status: "inProgress" },
     { title: "Done", status: "completed" },
   ];
+

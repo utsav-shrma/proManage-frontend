@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 10px;
+    
+    
+  
+   
+
+}
+
+.priority_container{
+    display: flex;
+    justify-content: space-between;
+}
+.checklist_heading{
+    display: flex;
+    justify-content: space-between;
+}
+.footer{
+    display:flex;
+    justify-content: space-between;
+}   
+
+.tasks{
+    display: flex;
+    flex-direction: column;
+}
