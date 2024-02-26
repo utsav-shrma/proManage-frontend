@@ -3,12 +3,14 @@ import styles from "./TaskCard.module.css";
 import Task from "../task/Task";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { grey } from "@mui/material/colors";
+import { priorityColorMap } from "../../../utils/constants";
 function TaskCard() {
   return (
     <div className={styles.container}>
       <div className={styles.priority_container}>
-        <div className={styles.priority}> High Priority</div>
+        <div className={styles.priority}> 
+        <span style={{color:priorityColorMap["low"]}} >●</span>
+        <p>High Priority</p></div>
         <button className={styles.collapseButton}>
           <MoreHorizRoundedIcon />
         </button>
