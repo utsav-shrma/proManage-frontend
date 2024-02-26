@@ -3,27 +3,112 @@
     flex-direction: column;
     background-color: white;
     margin: 10px;
-    
+    padding: 20px;
+border-radius: 20px;
+flex:2;
+
+
     
   
    
 
 }
+.priority{
+    color: #707070;
+    font-family: Poppins;
+font-size: 8px;
+font-weight: 500;
+line-height: 12px;
+letter-spacing: 0em;
+text-align: left;
 
+
+
+}
 .priority_container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex: 2;
 }
-.checklist_heading{
+.checklistHeadingContainer{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex:2;
+    
+    
 }
-.footer{
-    display:flex;
-    justify-content: space-between;
-}   
+.checklistHeadingContainer p{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 500;
+line-height: 17px;
+letter-spacing: 0em;
+text-align: left;
+margin: 0;
+
+
+
+
+}
+
 
 .tasks{
     display: flex;
     flex-direction: column;
+}
+.collapseButton{
+    
+border-style: none;
+background-color: white;
+}
+.taskTitle{
+    font-family: Poppins;
+font-size: 18px;
+font-weight: 500;
+line-height: 27px;
+letter-spacing: 0em;
+text-align: left;
+margin: 0;
+
+}
+.taskCollapseButton{
+   
+    border-radius: 3px;
+    background: #EEECEC;
+    height: 24px;
+    margin: 0;
+
+
+}
+.footer{
+    display:flex;
+    
+    justify-content: space-between;
+    align-items: center;
+}   
+
+.footer button{
+    color: #5A5A5A;
+    font-family: Poppins;
+font-size: 8px;
+font-weight: 500;
+line-height: 12px;
+letter-spacing: 0em;
+text-align: left;
+background: #EEECEC;
+border-style: none;
+border-radius: 8px;
+margin: 0;
+padding: 0;
+padding: 5px;
+padding-inline: 10px;
+margin: 2px;
+}
+
+.footerInside{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

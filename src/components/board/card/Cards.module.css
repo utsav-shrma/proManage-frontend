@@ -4,7 +4,10 @@
   margin: 10px;
   border-radius: 10px;
   background: #eef2f5;
-  height: 80vh;
+  flex:2;
+ 
+  /* height: 70vh; */
+  min-width:360px;
  
 
   
@@ -22,7 +25,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    overflow: auto;
+
     
     
     
@@ -31,6 +34,8 @@
 }
 .overflow_container{
   overflow: auto;
+  margin: 20px;
+  border-radius: 20px;
 }
 
 .title h1 {

@@ -1,15 +1,26 @@
 .container{
     display: flex;
     flex-direction: column;
-    width:80vw;
+    overflow-y: hidden;
+    /* overflow-y: hidden stopped heading other child divs from expanding with card container , how?*/
+    flex:2;
     height: 100vh;
+    margin: 0; 
+  padding: 0;
+ 
+  
 }
 .heading_container{
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    margin-left: 30px;
+    align-items: center;
+    /* flex: 0 0 auto; */
+    
 }
-
+.board_heading_container{
+    margin-bottom: 10px;
+}
 .welcome_message{
     font-family: Poppins;
 font-size: 22px;
@@ -18,9 +29,23 @@ line-height: 33px;
 letter-spacing: 0em;
 text-align: left;
 
+margin: 0;
+padding: 0;
+margin-top: 30px;
 
 }
+
 .curr_date{
+margin-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    margin-right: 30px;
+   
+}
+.curr_date h1{
+    
     font-family: Poppins;
 font-size: 20px;
 font-weight: 500;
@@ -28,6 +53,8 @@ line-height: 30px;
 letter-spacing: 0em;
 text-align: left;
 color: #707070;
+margin: 0;
+padding: 0;
 
 }
 .board_heading{
@@ -42,13 +69,35 @@ color: #707070;
 
 .cards_container{
     display:flex;
-    flex: 2; 
+    flex: 2;
+    
+    
+    overflow: auto;
+    
+    
      /* flex-wrap: wrap; */
 }
 
+/* .cardOverflowContainer{
+    flex: 2;
+    display: flex;
+    
+    } */
+
 .duration_button{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-right: 30px;
+    border-style: none;
+    background-color: white;
+    font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: center;
+
+
     
     
 }
@@ -56,8 +105,30 @@ color: #707070;
     display: flex;
     flex-direction: column;
     position: absolute;
-    transition: 3s;
+    
     background-color: white;
     z-index: 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     
+    padding-block: 10px;
+    padding-inline: 5px;
+}
+.duration_value button{
+    margin: 0;
+    padding-inline: 20px;
+    font-family: Poppins;
+    padding-block: 5px;
+    border-style: none;
+    background-color: white;
+font-size: 14px;
+font-weight: 500;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+}
+
+.duration_value button:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
 }

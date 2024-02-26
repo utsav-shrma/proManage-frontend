@@ -11,7 +11,9 @@ function Cards({title}) {
         </div>
         <div className={styles.overflow_container}> 
 {/* // overflow to a task (flex) conatiner was causing child components to stretch and passing below the parent 
-so by wrapping it by another div and setting it to overflow solved the problem */}
+so by wrapping it by another div and setting it to overflow solved the problem beacuse using flex the height of the container was changing
+but the the scroll length was not changing accordingly and  the child is passing over the parent */}
+        
         <div className={styles.task_container}>
             <TaskCard/>
             <TaskCard/>
