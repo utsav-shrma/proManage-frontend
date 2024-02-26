@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./Task.module.css";
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { useTheme } from '@mui/system';
 function Task() {
+
   return (
     <div className={styles.container}>
       <input
@@ -8,16 +11,16 @@ function Task() {
         type="checkbox"
         id="topping"
         name="topping"
-        value="Paneer"
       ></input>
-      <input
+      <TextareaAutosize
         className={styles.textarea}
-        type="textarea"
-        id="name"
-        name="name"
-      ></input>
-    </div>
+        
+      />
+      </div>
   );
 }
+
+
+
 
 export default Task;
