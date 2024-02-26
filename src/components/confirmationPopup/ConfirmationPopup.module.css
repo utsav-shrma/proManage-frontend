@@ -1,0 +1,62 @@
+.temp {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.09);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  width: 335.19px;
+  height: 200px;
+
+  border-radius: 10.91px;
+}
+
+.popup h1 {
+  font-family: Noto Sans;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 20px;
+}
+
+.popup button {
+  box-shadow: 0px 2px 12px 0px #82698c33;
+
+  width: 300px;
+  height: 45px;
+  padding: 17px, 4px, 17px, 4px;
+  border-radius: 12px;
+  gap: 10px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+
+  margin: 5px;
+}
+
+.submit {
+  color: white;
+  background: #17a2b8;
+  border-style: none;
+}
+
+.cancel {
+  color: #cf3636;
+  background: white;
+  border: 1px solid #cf3636;
+}
