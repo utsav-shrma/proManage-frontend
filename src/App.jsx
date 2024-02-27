@@ -8,6 +8,7 @@ import AnalyticsPage from "./pages/AnalyticsPage/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import PrivateWrapper from "./pages/PrivateWrapper/PrivateWrapper";
 import ConfirmationPopup from "./components/confirmationPopup/ConfirmationPopup";
+import EditCreatePopup from "./components/editCreatePopup/EditCreatePopup";
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +21,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/card" element={<CardPage />} />
-        <Route path="/confirm" element={<ConfirmationPopup />} />
+        <Route path="/confirm" element={<EditCreatePopup />} />
       </Routes>
     </BrowserRouter>
   );

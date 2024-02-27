@@ -1,15 +1,10 @@
 import React from "react";
 import styles from "./Task.module.css";
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
-import { useTheme } from '@mui/system';
+import { TextareaAutosize } from "@mui/base/TextareaAutosize";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-
-
-function Task() {
-
-  const priorityColor=(status)=>{
-    if(status==='low'){}
-  }
+function Task({ isPopupView }) {
+  console.log(isPopupView);
 
   return (
     <div className={styles.container}>
@@ -19,15 +14,19 @@ function Task() {
         id="topping"
         name="topping"
       ></input>
-      <TextareaAutosize
-        className={styles.textarea}
-        
-      />
-      </div>
+      <TextareaAutosize className={styles.textarea} />
+      
+      {isPopupView ? (
+        <button className={styles.deleteButton}>
+          <DeleteIcon sx={{ color: "#CF3636" }}></DeleteIcon>
+        </button>
+      ) :""}
+    </div>
   );
 }
 
-
-
+Task.defaultProps = {
+  isPopupView: false
+};
 
 export default Task;

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   margin-block: 3px;
   width: (264px);
   height: (42px);
@@ -17,6 +17,7 @@
   border: 2px solid #e2e2e2;
   width: 18px;
   height: 18px;
+  padding-top:1px;
   border-radius: 8px;
 }
 
@@ -41,4 +42,11 @@
   &:focus {
     outline: none;
   }
+}
+
+.deleteButton{
+    border-style: none;
+    background-color: white;
+    cursor: pointer;
+    
 }
