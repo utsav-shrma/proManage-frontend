@@ -50,5 +50,14 @@
 .title img {
   width: 18px;
   height: 18px;
+  
+}
+
+.globalCollapse{
+  border-style: none;
+  background: #EEF2F5;
+  margin: 0;
+  padding: 0;
   margin: 20px;
+
 }

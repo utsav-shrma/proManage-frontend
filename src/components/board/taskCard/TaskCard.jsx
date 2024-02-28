@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styles from "./TaskCard.module.css";
 import Task from "../task/Task";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
@@ -6,9 +6,13 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { priorityColorMap } from "../../../utils/constants";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 
-function TaskCard() {
+function TaskCard({globalCollapse}) {
   const [editPopup, setEditPopup] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  
+  useEffect(()=>{
+    
+    setIsCollapsed(false)},[globalCollapse]);
 
   return (
     <div
