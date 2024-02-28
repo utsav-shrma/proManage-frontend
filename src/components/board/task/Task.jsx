@@ -4,7 +4,6 @@ import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Task({ isPopupView }) {
-  console.log(isPopupView);
 
   return (
     <div className={styles.container}>
