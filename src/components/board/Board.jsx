@@ -25,7 +25,10 @@ function Board() {
       <div className={`${styles.heading_container} ${styles.board_heading_container}`}>
         <div className={styles.board_heading}>Board</div>
         <div>
-          <button className={styles.duration_button} onClick={(event)=>{setFlag(!flag); event.stopPropagation();}}>This Week  {flag?<KeyboardArrowDownRoundedIcon/>:<KeyboardArrowUpRoundedIcon/>}</button>
+          <button className={styles.duration_button} 
+          onClick={(event)=>{setFlag(!flag); event.stopPropagation();}}>
+            This Week  
+          {flag?<KeyboardArrowDownRoundedIcon/>:<KeyboardArrowUpRoundedIcon/>}</button>
           {flag ? (
                 ""
               ) : (

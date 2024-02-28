@@ -103,3 +103,44 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+
+.duration_value{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 20px;
+    
+    background-color: white;
+    z-index: 1;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    padding-block: 10px;
+    padding-inline: 5px;
+}
+.duration_value button{
+    margin: 0;
+    padding-inline: 20px;
+    font-family: Poppins;
+    padding-block: 5px;
+    border-style: none;
+    background-color: white;
+font-size: 14px;
+font-weight: 500;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+}
+
+.duration_value button:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.editPopup{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
