@@ -52,7 +52,8 @@
 .tasks {
   display: flex;
   flex-direction: column;
-  margin-block: 10px;
+  margin-block-start: 10px;
+  margin-block-end:5px;
 }
 .collapseButton {
   border-style: none;
@@ -69,15 +70,17 @@
 }
 .taskCollapseButton {
   border-radius: 3px;
-  background: #eeecec;
   height: 24px;
   margin: 0;
+  border-style: none;
+  
 }
 .footer {
   display: flex;
 
   justify-content: space-between;
   align-items: center;
+  margin-block-start: 5px;
 }
 
 .footer button {
@@ -144,3 +147,4 @@ text-align: left;
     justify-content: space-between;
 
 }
+
