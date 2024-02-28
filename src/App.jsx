@@ -9,6 +9,7 @@ import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import PrivateWrapper from "./pages/PrivateWrapper/PrivateWrapper";
 import ConfirmationPopup from "./components/confirmationPopup/ConfirmationPopup";
 import EditCreatePopup from "./components/editCreatePopup/EditCreatePopup";
+import ShareCard from "./components/shareCard/ShareCard";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/card" element={<CardPage />} />
         <Route path="/confirm" element={<EditCreatePopup />} />
+        <Route path="/share" element={<ShareCard />} />
       </Routes>
     </BrowserRouter>
   );
