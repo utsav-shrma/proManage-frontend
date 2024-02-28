@@ -11,6 +11,7 @@ import ConfirmationPopup from "./components/confirmationPopup/ConfirmationPopup"
 import EditCreatePopup from "./components/editCreatePopup/EditCreatePopup";
 import ShareCard from "./components/shareCard/ShareCard";
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -22,8 +23,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/card" element={<CardPage />} />
-        <Route path="/confirm" element={<EditCreatePopup />} />
+        <Route path="/edit" element={<EditCreatePopup />} />
         <Route path="/share" element={<ShareCard />} />
+        <Route path="/confirm" element={<ConfirmationPopup />} />
       </Routes>
     </BrowserRouter>
   );

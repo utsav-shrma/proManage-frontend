@@ -3,44 +3,28 @@ import styles from "./EditCreatePopup.module.css";
 import Task from "../board/task/Task";
 import { priorityColorMap } from "../../utils/constants";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from 'dayjs';
+import DatePicker from "../pickDate/DatePicker";
 
 function EditCreatePopup() {
- const currDate= new Date(); 
-  const [pickDate, setPickDate] = useState();
-  const [calenderdate, setcalenderdate] = useState();
-  const handleDateChange = (date) => {
-    setcalenderdate(date);
-    setPickDate(false);
-    
-  };
+ 
+  const [pickDate, setPickDate] = useState(false);
+  const [calenderDate, setCalenderDate]=useState();
+  
+ 
   return (
     <div className={styles.temp}>
-      {pickDate ? (
-        <div className={styles.calenderContainer}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <StaticDatePicker
-            slotProps={{
-                actionBar: {
-                  actions: ['clear','today']
-                }
-              }}
-            defaultValue={dayjs()}
-            value={calenderdate ?? dayjs()}
-            disablePast={true}
-            onChange={handleDateChange}
-            disabled={false}
-            closeOnSelect={true}
-              sx={{ padding: "0", boxShadow: "0px 2px 12px 0px #82698c33" }}
-            />
-          </LocalizationProvider>
-        </div>
-      ) : (
-        ""
-      )}
+        
+      {pickDate?<DatePicker 
+        pickDate={pickDate} 
+        setPickDate={setPickDate}
+        calenderDate={calenderDate}
+        setCalenderDate={setCalenderDate}
+        
+         ></DatePicker>:""}
+
+
+    
+
       <div className={styles.popup}>
         <div className={styles.header}>
           <p className={styles.title}>
@@ -110,10 +94,10 @@ function EditCreatePopup() {
           <button
             className={styles.dueDate}
             onClick={() => {
-              setPickDate(!pickDate);
+              setPickDate(true);
             }}
           >
-            {calenderdate?`${calenderdate.day()}/${calenderdate.month()}/${calenderdate.year()}`:"Select Due Date"}
+            {calenderDate?`${calenderDate.date()}/${calenderDate.month()+1}/${calenderDate.year()}`:"Select Due Date"}
             
           </button>
 
