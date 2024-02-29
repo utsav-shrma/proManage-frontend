@@ -2,16 +2,16 @@ export const tokenStorageKey = "token";
 export const nameStorageKey = "userName";
 
 export const analyticsCard1Titles = [
-  { title: "Backlog Tasks", key: "backlogTasks" },
-  { title: "To-Do Tasks", key: "todoTasks" },
-  { title: "In-Progress Tasks", key: "inProgressTasks" },
-  { title: "Completed Tasks", key: "completedTasks" },
+  { title: "Backlog Tasks", key: "backlog" },
+  { title: "To-Do Tasks", key: "toDo" },
+  { title: "In-Progress Tasks", key: "inProgress" },
+  { title: "Completed Tasks", key: "completed" },
 ];
 
 export const priorityKeyMap={
-    low:"lowPriority",
-    medium:"moderatePriority",
-    high:"highPriority"
+    low:"low",
+    medium:"medium",
+    high:"high"
 
 }
 
@@ -19,7 +19,7 @@ export const analyticsCard2Titles = [
   { title: "Low Priority", key: priorityKeyMap.low },
   { title: "Moderate Priority", key: priorityKeyMap.medium },
   { title: "High Priority", key: priorityKeyMap.high },
-  { title: "Due Date Tasks", key: "dueTasks" },
+  { title: "Due Date Tasks", key: "dueDate" },
 ];
 
 export const priorityColorMap={

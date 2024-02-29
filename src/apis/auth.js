@@ -1,5 +1,12 @@
 import axios from "axios";
 const baseURL = process.env.REACT_APP_BASE_URL;
+import { tokenStorageKey } from "../utils/constants";
+const jwt = localStorage.getItem(tokenStorageKey);
+let axiosConfig = {
+    headers: {
+        'Authorization': jwt,
+    }
+  };
 
 
 export const registerUser = async ({ name, email, password }) => {
