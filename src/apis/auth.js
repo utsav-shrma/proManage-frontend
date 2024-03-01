@@ -31,3 +31,26 @@ export const loginUser = async ({ email, password }) => {
     console.log(error);
   }
 };
+
+export const updateName = async ({ name }) => {
+  try {
+    const reqUrl = `${baseURL}/update/name/`;
+    const reqPayload = { name };
+    console.log(reqPayload);
+    const response = await axios.patch(reqUrl, reqPayload,axiosConfig);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updatePassword = async ({ oldPassword,newPassword }) => {
+  try {
+    const reqUrl = `${baseURL}/update/password/`;
+    const reqPayload = { oldPassword,newPassword };
+    const response = await axios.patch(reqUrl, reqPayload,axiosConfig);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
