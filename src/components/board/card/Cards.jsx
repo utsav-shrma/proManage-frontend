@@ -2,8 +2,10 @@ import React,{useState} from 'react'
 import styles from './Cards.module.css'
 import collapseIcon from '../../../assets/icons/collapseIcon.png'
 import TaskCard from '../taskCard/TaskCard'
-function Cards({title}) {
+function Cards({title,cardData=[]},cardStatus) {
   const [globalCollapse,setGlobalCollapse] = useState(true);
+  // console.log(title ,cardData);
+  
   return (
     <div className={styles.container}>
         <div className={styles.title}>
@@ -19,9 +21,14 @@ so by wrapping it by another div and setting it to overflow solved the problem b
 but the the scroll length was not changing accordingly and  the child is passing over the parent */}
         
         <div className={styles.task_container}>
-            <TaskCard globalCollapse={globalCollapse}/>
-            <TaskCard globalCollapse={globalCollapse} />
-            <TaskCard globalCollapse={globalCollapse} />
+          {
+            cardData.map((taskData,index)=>{
+              return(<TaskCard key={index} cardIndex={index}  globalCollapse={globalCollapse} taskData={taskData}/>);
+              
+            })
+          }
+          
+            
         </div>
         </div>
         

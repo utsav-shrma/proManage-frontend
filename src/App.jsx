@@ -10,6 +10,9 @@ import PrivateWrapper from "./pages/PrivateWrapper/PrivateWrapper";
 import ConfirmationPopup from "./components/confirmationPopup/ConfirmationPopup";
 import EditCreatePopup from "./components/editCreatePopup/EditCreatePopup";
 import ShareCard from "./components/shareCard/ShareCard";
+import { createContext } from 'react';
+
+export const MyContext = createContext("");
 function App() {
   
   return (

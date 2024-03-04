@@ -6,10 +6,11 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { priorityColorMap } from "../../../utils/constants";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 
-function TaskCard({globalCollapse}) {
+function TaskCard({globalCollapse,taskData, cardIndex,status}) {
   const [editPopup, setEditPopup] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  
+ 
+ 
   useEffect(()=>{
     
     setIsCollapsed(false)},[globalCollapse]);
@@ -24,8 +25,8 @@ function TaskCard({globalCollapse}) {
     >
       <div className={styles.priority_container}>
         <div className={styles.priority}>
-          <span style={{ color: priorityColorMap["low"] }}>●</span>
-          <p>High Priority</p>
+          <span style={{ color: priorityColorMap[taskData.priority] }}>●</span>
+          <p>{taskData.priority.charAt(0).toUpperCase() + taskData.priority.slice(1)} Priority</p>
         </div>
 
         <div className={styles.editPopup}>
@@ -68,9 +69,9 @@ function TaskCard({globalCollapse}) {
           )}
         </div>
       </div>
-      <h1 className={styles.taskTitle}>Hero Section</h1>
+      <h1 className={styles.taskTitle}>{taskData.title}</h1>
       <div className={styles.checklistHeadingContainer}>
-        <p>Checklist (1/3)</p>
+        <p>Checklist ({taskData.tasks.filter((task)=>task.isChecked===true).length}/{taskData.tasks.length})</p>
         
           {!isCollapsed ? (
             <button className={styles.taskCollapseButton} onClick={()=>{setIsCollapsed(!isCollapsed);}}>
@@ -86,14 +87,15 @@ function TaskCard({globalCollapse}) {
       
         {isCollapsed?
         <div className={styles.tasks}>
-        
-        <Task></Task>
-        <Task></Task>
+        {taskData.tasks.map((data,index)=>{
+          return <Task data={data}  key={index} taskIndex={index} cardIndex={cardIndex} currStatus={taskData.status}></Task>;
+        })}
+
       </div>:""}
         
       
       <div className={styles.footer}>
-        <button> select date</button>
+        <button> {taskData.dueDate?taskData.dueDate:"select date"}</button>
         <div className={styles.footerInside}>
           {/*add a check to not show current status button */}
           <button> backlog</button>

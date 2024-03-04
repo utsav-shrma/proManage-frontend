@@ -8,16 +8,27 @@ let axiosConfig = {
   };
 
  //add query Params here
- export const getAllCards = async ({interval}) => {
-    try {
+
+ export const getAllCards = async () => {
+  try {
+    
+    const reqUrl = `${baseURL}/card/`;
+    const response = await axios.get(reqUrl,axiosConfig);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+//  export const getAllCards = async ({interval}) => {
+//     try {
       
-      const reqUrl = `${baseURL}/card/?interval=${interval}`;
-      const response = await axios.get(reqUrl,axiosConfig);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//       const reqUrl = `${baseURL}/card/?interval=${interval}`;
+//       const response = await axios.get(reqUrl,axiosConfig);
+//       return response.data;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
 
 export const createCard = async ({ title, tasks, dueDate, isPublic, status, priority }) => {
     try {

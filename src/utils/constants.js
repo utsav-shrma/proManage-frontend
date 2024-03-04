@@ -32,8 +32,8 @@ export const durationFilterText={}
 
 export const taskStatus = [
     { title: "Backlog", status: "backlog" },
-    { title: "To Do", status: "todo" },
+    { title: "To Do", status: "toDo" },
     { title: "In progress", status: "inProgress" },
-    { title: "Done", status: "completed" },
+    { title: "Done", status: "done" },
   ];
 
