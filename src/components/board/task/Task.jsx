@@ -4,21 +4,32 @@ import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useContext } from 'react';
 import { MyContext } from '../../../App';
+import { checkTask } from "../../../apis/cards";
 
 function Task({ cardIndex,taskIndex,isPopupView,data,currStatus }) {
   const { cardData,setCardData } = useContext(MyContext);  
   const [checkFlag,setCheckFlag]=useState(data.isChecked);
+
+  const markTask=async()=>{
+    console.log(data._id);
+    const response=await checkTask(data._id,!checkFlag);
+    if(response){
+      console.log(response);
+     
+      setCardData((cardData) => {
+        const updatedCardData = { ...cardData }; // Make a shallow copy of the state
+        updatedCardData[currStatus][cardIndex].tasks[taskIndex].isChecked = !checkFlag;   
+        return updatedCardData;
+      });
+     }
+  };
 
   useEffect(()=>{
     setCheckFlag(data.isChecked)
   },[data.isChecked])
   
     const handleCheckChange=()=>{
-      setCardData((cardData) => {
-        const updatedCardData = { ...cardData }; // Make a shallow copy of the state
-        updatedCardData[currStatus][cardIndex].tasks[taskIndex].isChecked = !checkFlag;   
-        return updatedCardData;
-      });
+      markTask();
      
      
     }

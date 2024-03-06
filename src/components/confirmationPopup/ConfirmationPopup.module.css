@@ -1,24 +1,12 @@
-.temp {
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.09);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .popup {
+  padding: 0;
+  margin: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: white;
-  width: 335.19px;
-  height: 200px;
-
-  border-radius: 10.91px;
+ 
 }
 
 .popup h1 {
@@ -60,3 +48,4 @@
   background: white;
   border: 1px solid #cf3636;
 }
+

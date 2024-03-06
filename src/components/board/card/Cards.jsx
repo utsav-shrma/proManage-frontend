@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import styles from './Cards.module.css'
 import collapseIcon from '../../../assets/icons/collapseIcon.png'
 import TaskCard from '../taskCard/TaskCard'
-function Cards({title,cardData=[]},cardStatus) {
+function Cards({title,cardData=[],getAllCardsData}) {
   const [globalCollapse,setGlobalCollapse] = useState(true);
   // console.log(title ,cardData);
   
@@ -23,7 +23,7 @@ but the the scroll length was not changing accordingly and  the child is passing
         <div className={styles.task_container}>
           {
             cardData.map((taskData,index)=>{
-              return(<TaskCard key={index} cardIndex={index}  globalCollapse={globalCollapse} taskData={taskData}/>);
+              return(<TaskCard key={index} cardIndex={index}  globalCollapse={globalCollapse} taskData={taskData} getAllCardsData={getAllCardsData}/>);
               
             })
           }

@@ -5,12 +5,26 @@ import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { priorityColorMap } from "../../../utils/constants";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
+import { updateStatus } from "../../../apis/cards";
+import { useContext } from 'react';
+import { MyContext } from '../../../App';
 
-function TaskCard({globalCollapse,taskData, cardIndex,status}) {
+function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
   const [editPopup, setEditPopup] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
- 
- 
+  let status =taskData.status;
+  const { cardData,setCardData } = useContext(MyContext); 
+
+  const updateCardStatus= (updatedStatus)=>{
+
+    let response= updateStatus(taskData._id,updatedStatus);
+    if(response){
+      console.log(response);
+    }
+    getAllCardsData();
+  }
+    
+
   useEffect(()=>{
     
     setIsCollapsed(false)},[globalCollapse]);
@@ -97,10 +111,11 @@ function TaskCard({globalCollapse,taskData, cardIndex,status}) {
       <div className={styles.footer}>
         <button> {taskData.dueDate?taskData.dueDate:"select date"}</button>
         <div className={styles.footerInside}>
-          {/*add a check to not show current status button */}
-          <button> backlog</button>
-          <button>to do</button>
-          <button>in progress</button>
+          
+          {status!=('backlog')?<button onClick={()=>{updateCardStatus('backlog');}}> backlog</button>:""}
+          {status!=('toDo')?<button onClick={()=>{updateCardStatus('toDo');}}> toDo</button>:""}
+          {status!=('done')?<button onClick={()=>{updateCardStatus('done');}}> done</button>:""}
+          {status!=('inProgress')?<button onClick={()=>{updateCardStatus('inProgress');}}> inProgress</button>:""}
           {/* <button>done </button> */}
         </div>
       </div>

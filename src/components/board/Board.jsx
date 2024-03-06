@@ -65,7 +65,7 @@ function Board() {
       <div className={styles.cards_container}>
         {taskStatus.map((statusTypes, index) => {
           
-          return <Cards key={index}  title={statusTypes.title} cardData={cardData[statusTypes.status]} ></Cards>;
+          return <Cards key={index} title={statusTypes.title} cardData={cardData[statusTypes.status] } getAllCardsData={getAllCardsData} ></Cards>;
          
         })}
       </div>

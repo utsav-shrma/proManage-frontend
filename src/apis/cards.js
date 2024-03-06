@@ -75,10 +75,20 @@ export const createCard = async ({ title, tasks, dueDate, isPublic, status, prio
     }
   };
 
-  export const checkTask = async ({taskId}) => {
+  export const updateStatus = async (cardId,status) => {
     try {
-      const reqUrl = `${baseURL}/task/${taskId}`;
-      const response = await axios.patch(reqUrl,axiosConfig);
+      const reqUrl = `${baseURL}/card/status/${cardId}`;
+      const response = await axios.patch(reqUrl,{status},axiosConfig);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export const checkTask = async (taskId,isChecked) => {
+    try {
+      const reqUrl = `${baseURL}/card/task/${taskId}`;
+      const response = await axios.patch(reqUrl,{isChecked},axiosConfig);
       return response.data;
     } catch (error) {
       console.log(error);
