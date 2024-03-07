@@ -4,12 +4,14 @@ import Task from "../board/task/Task";
 import { priorityColorMap } from "../../utils/constants";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import DatePicker from "../pickDate/DatePicker";
+import { useSelector, useDispatch } from 'react-redux'
+import { setShowEditView } from "../../redux/slice/utility";
 
-function EditCreatePopup() {
+function EditCreatePopup({cardData,cardIndex}) {
  
   const [pickDate, setPickDate] = useState(false);
   const [calenderDate, setCalenderDate]=useState();
-  
+  const dispatch = useDispatch();
  
   return (
     <div className={styles.temp}>
@@ -35,6 +37,7 @@ function EditCreatePopup() {
               className={styles.titleInput}
               placeholder="Enter Task Title"
               type="textarea"
+              value={cardData.title}
             ></input>
           </div>
 
@@ -74,12 +77,14 @@ function EditCreatePopup() {
           </div>
 
           <p className={styles.title}>
-            Checklist(1/3) <span className={styles.redstar}>*</span>
+          Checklist ({cardData.tasks.filter((task)=>task.isChecked===true).length}/{cardData.tasks.length}) <span className={styles.redstar}>*</span>
           </p>
           <div className={styles.checklistContainer}>
             {/* //loop here */}
             <div className={styles.task}>
-              <Task isPopupView={true}></Task>
+            {cardData.tasks.map((data,index)=>{
+          return <Task data={data}  key={index} isPopupView={true} taskIndex={index} cardIndex={cardIndex} currStatus={cardData.status}></Task>;
+        })}
             </div>
           </div>
 
@@ -102,7 +107,7 @@ function EditCreatePopup() {
           </button>
 
           <div className={styles.submitContainer}>
-            <button className={styles.cancel}> Cancel</button>
+            <button onClick={()=>{dispatch(setShowEditView());}} className={styles.cancel}> Cancel</button>
             <button className={styles.submit}> Save</button>
           </div>
         </div>

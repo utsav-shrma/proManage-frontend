@@ -27,7 +27,7 @@ function App() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/card" element={<CardPage />} />
         <Route path="/edit" element={<EditCreatePopup />} />
-        <Route path="/share" element={<ShareCard />} />
+        <Route path="/card/:cardId" element={<ShareCard />} />
         <Route path="/confirm" element={<ConfirmationPopup />} />
       </Routes>
     </BrowserRouter>

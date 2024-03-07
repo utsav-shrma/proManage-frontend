@@ -7,11 +7,14 @@ import settingsLogo from "../../assets/icons/settings.png";
 import logoutLogo from "../../assets/icons/Logout.png";
 import { useNavigate } from "react-router-dom";
 import ConfirmationPopup from "../confirmationPopup/ConfirmationPopup";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+import { useSelector, useDispatch } from 'react-redux'
+import { setLogutPopup } from "../../redux/slice/utility";
 function Dashboard() {
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const dispatch = useDispatch();
+  let logoutPopup = useSelector((state) => state.utility.logoutPopup);
+  const handleLogout =  () => {
+     dispatch(setLogutPopup());
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
     navigate("/login");
@@ -60,16 +63,13 @@ function Dashboard() {
       </div>
 
       <div className={styles.logout_container}>
-        <Popup modal nested contentStyle={{width:"335px",height:"200px",borderRadius:"11px",justifyContent:"center",alignItems:"center"}}
-          trigger={
-            <button  className={styles.logout_button}>
+      <button onClick={()=>{console.log("dispatchc"); dispatch(setLogutPopup());}} className={styles.logout_button}>
               <img className={styles.logo_image} src={logoutLogo}></img>
               <h1 id={styles.logout_text} className={styles.tab_heading}>
                 Logout
               </h1>
             </button>
-          }
-        >{ close=>(<ConfirmationPopup isLogoutOrDelete={true} handleSubmit={handleLogout} close={close}></ConfirmationPopup>)}</Popup>
+        { logoutPopup?<ConfirmationPopup isLogoutOrDelete={true} handleSubmit={handleLogout} close={()=>{dispatch(setLogutPopup())}}></ConfirmationPopup>:""}
       </div>
     </div>
   );

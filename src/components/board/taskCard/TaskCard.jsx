@@ -8,12 +8,50 @@ import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRound
 import { updateStatus } from "../../../apis/cards";
 import { useContext } from 'react';
 import { MyContext } from '../../../App';
+import { useSelector, useDispatch } from 'react-redux'
+import EditCreatePopup from "../../editCreatePopup/EditCreatePopup";
+import {setShowEditView,setDeletePopup} from "../../../redux/slice/utility";
+import ConfirmationPopup from "../../confirmationPopup/ConfirmationPopup";
+import { shareCard } from "../../../apis/cards";
+import { Bounce, Slide, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
   const [editPopup, setEditPopup] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
   let status =taskData.status;
   const { cardData,setCardData } = useContext(MyContext); 
+  const dispatch = useDispatch();
+  let showEditView = useSelector((state) => state.utility.showEditView);
+  let deletePopup = useSelector((state) => state.utility.deletePopup);
+
+  const notifySuccess = () => {
+    
+    toast.success(`Link Copied To Clipboard`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition:Bounce,
+    });
+  };
+
+  const shareCardbyId= async()=>{
+
+    let response=await shareCard(taskData._id);
+    if(response){
+      console.log(response);
+      let text=window.location.href+`card/${taskData._id}`;
+      console.log(text);
+      navigator.clipboard.writeText(text);
+      notifySuccess();
+    }
+    
+  }
 
   const updateCardStatus= (updatedStatus)=>{
 
@@ -29,6 +67,8 @@ function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
     
     setIsCollapsed(false)},[globalCollapse]);
 
+ 
+
   return (
     <div
       className={styles.container}
@@ -37,6 +77,10 @@ function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
         event.stopPropagation();
       }}
     >
+    
+      <ToastContainer></ToastContainer>
+      {showEditView?<EditCreatePopup cardData={taskData} cardIndex={cardIndex}></EditCreatePopup>:""}
+      {deletePopup?<ConfirmationPopup isLogoutOrDelete={false} handleSubmit={()=>{}} close={()=>{dispatch(setDeletePopup())}}  ></ConfirmationPopup>:""}
       <div className={styles.priority_container}>
         <div className={styles.priority}>
           <span style={{ color: priorityColorMap[taskData.priority] }}>●</span>
@@ -60,6 +104,8 @@ function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
               <button
                 onClick={(event) => {
                   event.stopPropagation();
+                  dispatch(setShowEditView());
+                  setEditPopup(true);
                 }}
               >
                 Edit
@@ -67,6 +113,8 @@ function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
               <button
                 onClick={(event) => {
                   event.stopPropagation();
+                   shareCardbyId();
+                   setEditPopup(true);
                 }}
               >
                 Share
@@ -75,6 +123,8 @@ function TaskCard({globalCollapse,taskData, cardIndex,getAllCardsData}) {
                 style={{ color: "red" }}
                 onClick={(event) => {
                   event.stopPropagation();
+                  dispatch(setDeletePopup());
+                  setEditPopup(true);
                 }}
               >
                 Delete
