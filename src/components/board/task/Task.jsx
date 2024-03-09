@@ -6,34 +6,9 @@ import { useContext } from 'react';
 import { MyContext } from '../../../App';
 import { checkTask } from "../../../apis/cards";
 
-function Task({ cardIndex,taskIndex,isPopupView,data,currStatus }) {
-  const { cardData,setCardData } = useContext(MyContext);  
-  const [checkFlag,setCheckFlag]=useState(data.isChecked);
+function Task({ handleCheckChange,isPopupView,data,handleTaskChange,onDelete }) {
 
-  const markTask=async()=>{
-    console.log(data._id);
-    const response=await checkTask(data._id,!checkFlag);
-    if(response){
-      console.log(response);
-     
-      setCardData((cardData) => {
-        const updatedCardData = { ...cardData }; // Make a shallow copy of the state
-        updatedCardData[currStatus][cardIndex].tasks[taskIndex].isChecked = !checkFlag;   
-        return updatedCardData;
-      });
-     }
-  };
-
-  useEffect(()=>{
-    setCheckFlag(data.isChecked)
-  },[data.isChecked])
-  
-    const handleCheckChange=()=>{
-      markTask();
-     
-     
-    }
-
+  // useEffect(()=>{console.log("render",data)});
   return (
     <div className={styles.container}>
       <input
@@ -43,13 +18,13 @@ function Task({ cardIndex,taskIndex,isPopupView,data,currStatus }) {
         name="topping"
         onChange={handleCheckChange}
         
-        checked={checkFlag?"checked":""}
+        checked={data.isChecked?"checked":""}
       ></input>
-      <TextareaAutosize className={styles.textarea} value={data.task}  />
+      <TextareaAutosize onChange={handleTaskChange}className={styles.textarea} value={data.task}  />
       
       {isPopupView ? (
-        <button className={styles.deleteButton}>
-          <DeleteIcon sx={{ color: "#CF3636" }}></DeleteIcon>
+        <button onClick={onDelete} className={styles.deleteButton}>
+          <DeleteIcon  sx={{ color: "#CF3636" }}></DeleteIcon>
         </button>
       ) :""}
     </div>
