@@ -16,6 +16,7 @@ import { shareCard } from "../../../apis/cards";
 import { Bounce, Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { checkTask } from "../../../apis/cards";
+import dayjs from "dayjs";
 
 function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
   const [editPopup, setEditPopup] = useState(true);
@@ -25,6 +26,20 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
   const dispatch = useDispatch();
   let showEditView = useSelector((state) => state.utility.showEditView);
   let deletePopup = useSelector((state) => state.utility.deletePopup);
+  let dueDate=dayjs(taskData.dueDate);
+  let currDate=dayjs();
+  let dateButtonColor="";
+  let fontColor="#5a5a5a";
+  if(taskData.status==="done"){
+    dateButtonColor="#63C05B";
+    fontColor="white";
+  }
+  else if(dueDate.isBefore(currDate)){
+      dateButtonColor="#CF3636";
+      fontColor="white";
+    }
+  
+
 
   const notifySuccess = () => {
     toast.success(`Link Copied To Clipboard`, {
@@ -210,7 +225,7 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
       )}
 
       <div className={styles.footer}>
-        <button> {taskData.dueDate ? taskData.dueDate : "select date"}</button>
+        <button style={{background:dateButtonColor,color:fontColor}}> {taskData.dueDate ? `${dueDate.date()}/${dueDate.month() + 1}/${dueDate.year()}` : "select date"}</button>
         <div className={styles.footerInside}>
           {status != "backlog" ? (
             <button

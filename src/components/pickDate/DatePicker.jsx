@@ -20,7 +20,7 @@ function DatePicker({ setPickDate, calenderDate, setCalenderDate }) {
           }}
           defaultValue={dayjs()}
           value={ calenderDate??dayjs()}
-          disablePast={true}
+          
           onChange={handleDateChange}
           closeOnSelect={true}
           onAccept={(date) => {

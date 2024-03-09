@@ -43,10 +43,10 @@ export const createCard = async ({ title, tasks, dueDate, isPublic, status, prio
   };
 
  
-  export const updateCard = async ({ title, tasks, dueDate, isPublic, status, priority,cardId }) => {
+  export const updateCard = async ({ title, tasks, dueDate, isPublic, status, priority,_id }) => {
     try {
       
-      const reqUrl = `${baseURL}/card/${cardId}`;
+      const reqUrl = `${baseURL}/card/${_id}`;
       const reqPayload = { title, tasks, dueDate, isPublic, status, priority };
       const response = await axios.put(reqUrl, reqPayload,axiosConfig);
       return response.data;

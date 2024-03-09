@@ -7,6 +7,8 @@ import DatePicker from "../pickDate/DatePicker";
 import { useSelector, useDispatch } from "react-redux";
 import { setShowEditView } from "../../redux/slice/utility";
 import dayjs from "dayjs";
+import { createCard,updateCard } from "../../apis/cards";
+import { setReloadGlobalState } from "../../redux/slice/utility";
 
 function EditCreatePopup({ cardData, cardIndex }) {
   const [form, setForm] = useState({
@@ -25,8 +27,9 @@ function EditCreatePopup({ cardData, cardIndex }) {
   // const [shallowCopy,setShallowCopy]=useState(cardData); //shallow copy on editin this actually effects the cardData (parent state) using setShallow copy
 
   useEffect(() => {
-    setForm(JSON.parse(JSON.stringify(cardData)));
-    setCalenderDate(form.dueDate ? dayjs(form.dueDate, "YYYY-MM-DD") : null);
+    let deepCopy=JSON.parse(JSON.stringify(cardData));
+    setForm(deepCopy);
+    setCalenderDate(deepCopy.dueDate ? dayjs(deepCopy.dueDate) : null);
   }, []);
 
   const handlePriorityChange = (event) => {
@@ -35,23 +38,50 @@ function EditCreatePopup({ cardData, cardIndex }) {
     setForm(newForm);
   };
 
-  const handleDateChange = (event) => {
-    const newForm = { ...form };
-    newForm.dueDate = event.target.value;
-    setForm(newForm);
-  };
-
   useEffect(() => {
     setForm((form) => {
-      form.dueDate = calenderDate
-        ? `${calenderDate.year()}-${
-            calenderDate.month() + 1
-          }-${calenderDate.date()}`
-        : "";
+      form.dueDate = calenderDate;
       return form;
     });
-
   }, [calenderDate]);
+
+  const updateApi = async(newCard)=>{
+    let response=await updateCard(newCard);
+    if(response){
+        console.log(response);
+        dispatch(setShowEditView());
+    }
+  }
+
+  const createApi = async(newCard)=>{
+    let response=await createCard(newCard);
+    if(response){
+        console.log(response);
+        dispatch(setShowEditView());
+    }
+  }
+
+  const handleSubmit=()=>{
+
+    const nonEmptyStrings = newTask.filter(t => t.task !== "");
+    let newCard={...form};
+    newCard.tasks=[...newCard.tasks,...nonEmptyStrings];
+    // console.log(newCard);
+
+    if(cardData){
+      //call update api
+      updateApi(newCard);
+      
+
+    }
+    else{
+      
+      //call create api
+      createApi(newCard);
+    }
+
+    dispatch(setReloadGlobalState());
+  }
 
   return (
     <div className={styles.temp}>
@@ -263,7 +293,7 @@ function EditCreatePopup({ cardData, cardIndex }) {
               {" "}
               Cancel
             </button>
-            <button className={styles.submit}> Save</button>
+            <button onClick={handleSubmit} className={styles.submit}> Save</button>
           </div>
         </div>
       </div>

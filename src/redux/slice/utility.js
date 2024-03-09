@@ -5,6 +5,7 @@ const initialState = {
   showEditView:false,
   deletePopup:false,
   logoutPopup:false,
+  reloadGlobalState:false,
 };
 
 const utilitySlice = createSlice({
@@ -26,12 +27,16 @@ const utilitySlice = createSlice({
       state.logoutPopup=!state.logoutPopup;
       
     },
+    setReloadGlobalState: (state, action) => {
+      state.reloadGlobalState=!state.reloadGlobalState;
+      
+    },
     // deleteTodo: (state, action) => {
     //   state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     // },
   },
 });
 
-export const { addCount ,setShowEditView,setDeletePopup,setLogutPopup} = utilitySlice.actions;
+export const { addCount ,setShowEditView,setDeletePopup,setLogutPopup,setReloadGlobalState} = utilitySlice.actions;
 
 export default utilitySlice.reducer;

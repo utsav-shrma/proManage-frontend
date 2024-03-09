@@ -8,10 +8,12 @@ import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { priorityColorMap } from "../../utils/constants";
 import { getCardByID } from "../../apis/cards";
+import dayjs from "dayjs";
 function ShareCard() {
   const params = useParams();
   const cardId = params.cardId;
   const [cardData, setCardData] = useState();
+  
 
   const findCard = async () => {
     let response = await getCardByID(cardId);
@@ -19,12 +21,35 @@ function ShareCard() {
       setCardData(response);
     }
   };
+  const [dueDate,setDueDate]=useState();
+  let currDate=dayjs();
+  const [dateButtonColor,setDateButtonColor]=useState("");
+  const [fontColor,setFontColor]=useState("#5a5a5a");
 
   useEffect(() => {
     console.log(cardId);
     findCard();
     console.log(cardData);
   }, []);
+
+  useEffect(()=>{
+    
+    if(cardData){
+      let temp=dayjs(cardData.dueDate);
+    if(cardData.status==="done"){
+      setDateButtonColor("#63C05B");
+      setFontColor("white");
+    }
+    else if(currDate.isAfter(dayjs(temp))){
+      setDateButtonColor("#CF3636");
+      setFontColor("white");
+      }
+
+      setDueDate(temp);
+      
+    }
+  
+  },[cardData]);
 
   return (
     <div className={styles.mainContainer}>
@@ -84,7 +109,7 @@ function ShareCard() {
               </div>
               <div className={styles.footer}>
                 <p>Due Date</p>
-                <button> select date</button>
+                <button style={{background:dateButtonColor,color:fontColor}} > {dueDate?`${dueDate.date()}/${dueDate.month() + 1}/${dueDate.year()}`:"Select Due Date"}</button>
               </div>
             </div>
           </div>

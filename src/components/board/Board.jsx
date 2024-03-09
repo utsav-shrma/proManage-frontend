@@ -10,6 +10,8 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import { getAllCards } from "../../apis/cards";
 import { MyContext } from "../../App";
+import { useSelector, useDispatch } from "react-redux";
+import { setReloadGlobalState } from "../../redux/slice/utility";
 
 
 function Board() {
@@ -17,6 +19,8 @@ function Board() {
   const [flag,setFlag]=useState(true);
   const [duration,setDuration]=useState("This Week");
   const [cardData,setCardData]=useState([]);
+  const dispatch = useDispatch();
+  let reloadGlobalState = useSelector((state) => state.utility.reloadGlobalState);
   
   const getAllCardsData=async()=>{
     const response=await getAllCards();
@@ -31,7 +35,7 @@ function Board() {
     return () => {
       
     };
-  },[]);
+  },[reloadGlobalState]);
   return (
     
       <div className={styles.container}>
