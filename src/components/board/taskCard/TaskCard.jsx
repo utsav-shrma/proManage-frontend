@@ -10,13 +10,14 @@ import { useContext } from "react";
 import { MyContext } from "../../../App";
 import { useSelector, useDispatch } from "react-redux";
 import EditCreatePopup from "../../editCreatePopup/EditCreatePopup";
-import { setShowEditView, setDeletePopup } from "../../../redux/slice/utility";
 import ConfirmationPopup from "../../confirmationPopup/ConfirmationPopup";
 import { shareCard } from "../../../apis/cards";
 import { Bounce, Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { checkTask } from "../../../apis/cards";
 import dayjs from "dayjs";
+import { setReloadGlobalState } from "../../../redux/slice/utility";
+import { deleteCard } from "../../../apis/cards";
 
 function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
   const [editPopup, setEditPopup] = useState(true);
@@ -24,8 +25,8 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
   let status = taskData.status;
   const { cardData, setCardData } = useContext(MyContext);
   const dispatch = useDispatch();
-  let showEditView = useSelector((state) => state.utility.showEditView);
-  let deletePopup = useSelector((state) => state.utility.deletePopup);
+  const [showEditView,setShowEditView]=useState(false);
+  let [deletePopup,setDeletePopup]=useState(false);
   let dueDate=dayjs(taskData.dueDate);
   let currDate=dayjs();
   let dateButtonColor="";
@@ -78,6 +79,19 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
     setIsCollapsed(false);
   }, [globalCollapse]);
 
+  const handleDelete=async ()=>{
+    let response = await deleteCard(taskData._id);
+    if(response){
+      console.log(response);
+      setDeletePopup(false);
+      dispatch(setReloadGlobalState());
+
+    }
+
+  }
+
+  
+
   return (
     <div
       className={styles.container}
@@ -90,7 +104,8 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
       {showEditView ? (
         <EditCreatePopup
           cardData={taskData}
-          cardIndex={cardIndex}
+          setShowEditView={setShowEditView}
+
         ></EditCreatePopup>
       ) : (
         ""
@@ -98,10 +113,11 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
       {deletePopup ? (
         <ConfirmationPopup
           isLogoutOrDelete={false}
-          handleSubmit={() => {}}
+          handleSubmit={handleDelete}
           close={() => {
-            dispatch(setDeletePopup());
+            setDeletePopup(false);
           }}
+          
         ></ConfirmationPopup>
       ) : (
         ""
@@ -133,7 +149,7 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
               <button
                 onClick={(event) => {
                   event.stopPropagation();
-                  dispatch(setShowEditView());
+                  setShowEditView(true);
                   setEditPopup(true);
                 }}
               >
@@ -152,7 +168,7 @@ function TaskCard({ globalCollapse, taskData, cardIndex, getAllCardsData }) {
                 style={{ color: "red" }}
                 onClick={(event) => {
                   event.stopPropagation();
-                  dispatch(setDeletePopup());
+                  setDeletePopup(true);
                   setEditPopup(true);
                 }}
               >

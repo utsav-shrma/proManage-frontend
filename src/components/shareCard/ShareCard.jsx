@@ -34,7 +34,7 @@ function ShareCard() {
 
   useEffect(()=>{
     
-    if(cardData){
+    if(cardData && cardData.dueDate){
       let temp=dayjs(cardData.dueDate);
     if(cardData.status==="done"){
       setDateButtonColor("#63C05B");

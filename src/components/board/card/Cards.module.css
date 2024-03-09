@@ -61,3 +61,17 @@
   margin: 20px;
 
 }
+
+.buttonContainer{
+  display: flex;
+  align-items: center;
+}
+
+.addButton{
+  border-style: none;
+  background: #EEF2F5;
+  margin: 0;
+  padding: 0;
+  color: grey;
+  
+}

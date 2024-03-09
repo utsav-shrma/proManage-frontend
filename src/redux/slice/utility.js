@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   count:0,
-  showEditView:false,
-  deletePopup:false,
   logoutPopup:false,
   reloadGlobalState:false,
 };
@@ -14,14 +12,6 @@ const utilitySlice = createSlice({
   reducers: {
     addCount: (state, action) => {
       state.count+=1;
-    },
-    setShowEditView: (state, action) => {
-      state.showEditView=!state.showEditView;
-
-    },
-    setDeletePopup: (state, action) => {
-      state.deletePopup=!state.deletePopup;
-      
     },
     setLogutPopup: (state, action) => {
       state.logoutPopup=!state.logoutPopup;
@@ -37,6 +27,6 @@ const utilitySlice = createSlice({
   },
 });
 
-export const { addCount ,setShowEditView,setDeletePopup,setLogutPopup,setReloadGlobalState} = utilitySlice.actions;
+export const { addCount ,setLogutPopup,setReloadGlobalState} = utilitySlice.actions;
 
 export default utilitySlice.reducer;

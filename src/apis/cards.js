@@ -55,7 +55,7 @@ export const createCard = async ({ title, tasks, dueDate, isPublic, status, prio
     }
   };
 
- export const deleteCard = async ({cardId}) => {
+ export const deleteCard = async (cardId) => {
     try {
       const reqUrl = `${baseURL}/card/${cardId}`;
       const response = await axios.delete(reqUrl,axiosConfig);

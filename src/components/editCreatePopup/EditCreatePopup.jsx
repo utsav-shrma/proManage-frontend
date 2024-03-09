@@ -5,12 +5,12 @@ import { priorityColorMap } from "../../utils/constants";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import DatePicker from "../pickDate/DatePicker";
 import { useSelector, useDispatch } from "react-redux";
-import { setShowEditView } from "../../redux/slice/utility";
+
 import dayjs from "dayjs";
 import { createCard,updateCard } from "../../apis/cards";
 import { setReloadGlobalState } from "../../redux/slice/utility";
 
-function EditCreatePopup({ cardData, cardIndex }) {
+function EditCreatePopup({ cardData,setShowEditView }) {
   const [form, setForm] = useState({
     priority: "",
     title: "",
@@ -27,9 +27,12 @@ function EditCreatePopup({ cardData, cardIndex }) {
   // const [shallowCopy,setShallowCopy]=useState(cardData); //shallow copy on editin this actually effects the cardData (parent state) using setShallow copy
 
   useEffect(() => {
-    let deepCopy=JSON.parse(JSON.stringify(cardData));
-    setForm(deepCopy);
-    setCalenderDate(deepCopy.dueDate ? dayjs(deepCopy.dueDate) : null);
+    if(cardData){
+      let deepCopy=JSON.parse(JSON.stringify(cardData));
+      setForm(deepCopy);
+      setCalenderDate(deepCopy.dueDate ? dayjs(deepCopy.dueDate) : null);
+    }
+    
   }, []);
 
   const handlePriorityChange = (event) => {
@@ -49,7 +52,7 @@ function EditCreatePopup({ cardData, cardIndex }) {
     let response=await updateCard(newCard);
     if(response){
         console.log(response);
-        dispatch(setShowEditView());
+        setShowEditView(false);
     }
   }
 
@@ -57,7 +60,7 @@ function EditCreatePopup({ cardData, cardIndex }) {
     let response=await createCard(newCard);
     if(response){
         console.log(response);
-        dispatch(setShowEditView());
+        setShowEditView(false);
     }
   }
 
@@ -171,8 +174,8 @@ function EditCreatePopup({ cardData, cardIndex }) {
 
           <p className={styles.title}>
             Checklist (
-            {form.tasks.filter((task) => task.isChecked === true).length}/
-            {form.tasks.length}) <span className={styles.redstar}>*</span>
+            {form.tasks.filter((task) => task.isChecked === true).length + newTask.filter((task) => task.isChecked === true).length}/
+            {form.tasks.length + newTask.length}) <span className={styles.redstar}>*</span>
           </p>
           <div className={styles.checklistContainer}>
             {/* //loop here */}
@@ -286,7 +289,7 @@ function EditCreatePopup({ cardData, cardIndex }) {
           <div className={styles.submitContainer}>
             <button
               onClick={() => {
-                dispatch(setShowEditView());
+                setShowEditView(false);
               }}
               className={styles.cancel}
             >
