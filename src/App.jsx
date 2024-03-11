@@ -18,11 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route element={<PrivateWrapper />}>  for protecting routes to be uncommented in future in prod*/}
+        <Route element={<PrivateWrapper />}> 
           <Route path="/" element={<BoardPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
-        {/* </Route> */}
+        </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/card" element={<CardPage />} />
