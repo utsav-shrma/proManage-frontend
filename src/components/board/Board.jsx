@@ -17,13 +17,13 @@ import { setReloadGlobalState } from "../../redux/slice/utility";
 function Board() {
   const userName = localStorage.getItem(nameStorageKey);
   const [flag,setFlag]=useState(true);
-  const [duration,setDuration]=useState("This Week");
+  const [duration,setDuration]=useState(null);
   const [cardData,setCardData]=useState([]);
   const dispatch = useDispatch();
   let reloadGlobalState = useSelector((state) => state.utility.reloadGlobalState);
   
   const getAllCardsData=async()=>{
-    const response=await getAllCards();
+    let response=await getAllCards(duration);
     if(response){
       console.log(response);
      
@@ -35,7 +35,7 @@ function Board() {
     return () => {
       
     };
-  },[reloadGlobalState]);
+  },[reloadGlobalState,duration]);
   return (
     
       <div className={styles.container}>
@@ -50,15 +50,15 @@ function Board() {
         <div className={styles.durationContainer}>
           <button className={styles.duration_button} 
           onClick={(event)=>{setFlag(!flag); event.stopPropagation();}}>
-            {duration}  
+            {duration?(duration==="today"?"Today":"This Month"):"This Week"}  
           {flag?<KeyboardArrowDownRoundedIcon/>:<KeyboardArrowUpRoundedIcon/>}</button>
           {flag ? (
                 ""
               ) : (
                 <div className={styles.duration_value}>
-                  <button onClick={(event)=>{event.stopPropagation(); setDuration("Today");}}>Today</button>
-                  <button onClick={(event)=>{event.stopPropagation();setDuration("This Week");}} >This Week</button>
-                  <button onClick={(event)=>{event.stopPropagation();setDuration("This Month");}} >This Month</button>
+                  <button onClick={(event)=>{event.stopPropagation(); setDuration("today"); setFlag(true);}}>Today</button>
+                  <button onClick={(event)=>{event.stopPropagation();setDuration(""); setFlag(true);}} >This Week</button>
+                  <button onClick={(event)=>{event.stopPropagation();setDuration("lastMonth"); setFlag(true);}} >This Month</button>
                 </div>
               )}
         </div>

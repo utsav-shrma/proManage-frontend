@@ -9,10 +9,15 @@ let axiosConfig = {
 
  //add query Params here
 
- export const getAllCards = async () => {
+ export const getAllCards = async (duration) => {
   try {
     
-    const reqUrl = `${baseURL}/card/`;
+    let reqUrl = `${baseURL}/card/`;
+
+    if(duration){
+      reqUrl = `${baseURL}/card/${duration}`;
+    }
+
     const response = await axios.get(reqUrl,axiosConfig);
     return response.data;
   } catch (error) {
@@ -22,7 +27,7 @@ let axiosConfig = {
  export const getCardByID = async (cardId) => {
     try {
       
-      const reqUrl = `${baseURL}/card/${cardId}`;
+      const reqUrl = `${baseURL}/card/id/${cardId}`;
       const response = await axios.get(reqUrl,axiosConfig);
       return response.data;
     } catch (error) {
