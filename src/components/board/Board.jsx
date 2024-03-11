@@ -3,8 +3,6 @@ import styles from "./Board.module.css";
 import Cards from "./card/Cards";
 import { nameStorageKey } from "../../utils/constants";
 import { taskStatus } from "../../utils/constants";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 import { getFormattedDate } from "../../utils/utilityFunctions";
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
