@@ -27,8 +27,8 @@ let axiosConfig = {
  export const getCardByID = async (cardId) => {
     try {
       
-      const reqUrl = `${baseURL}/card/id/${cardId}`;
-      const response = await axios.get(reqUrl,axiosConfig);
+      const reqUrl = `${baseURL}/share/${cardId}`;
+      const response = await axios.get(reqUrl);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -72,7 +72,7 @@ export const createCard = async ({ title, tasks, dueDate, isPublic, status, prio
 
   export const shareCard = async (cardId) => {
     try {
-      const reqUrl = `${baseURL}/share/${cardId}`;
+      const reqUrl = `${baseURL}/card/share/${cardId}`;
       const response = await axios.patch(reqUrl,{},axiosConfig);
       return response.data;
     } catch (error) {
