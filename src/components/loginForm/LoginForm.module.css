@@ -145,7 +145,7 @@ input::-ms-clear {
     
     
   .container{
-    height: 600px;
+    height: 100vh;
     width: 100vw;
     background-color: white;
   }
